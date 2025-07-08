@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Prompt Puzzle</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 30px;
+      background: #f4f4f4;
+    }
+
+    .level {
+      display: none;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
+    }
+
+    .level.active {
+      display: block;
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .gif {
+      display: none;
+      margin-top: 15px;
+    }
+
+    textarea {
+      width: 100%;
+    }
+
+    #answer-summary {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 20px;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Prompt Puzzle</h1>
+
+  <!-- Giriş ekranı -->
+  <div class="level active" id="start">
+    <h2>Oyuna Başla</h2>
+    <p>İsmini gir:</p>
+    <input type="text" id="username" placeholder="Adını yaz...">
+    <br><br>
+    <button onclick="startGame()">Başla 🚀</button>
+  </div>
+
+  <!-- Seviye 1 -->
+  <div class="level" id="level1">
+    <h2>Seviye 1: Rol ve Amaç</h2>
+    <p><strong>Talimatlar:</strong> Yazının tonu açıklayıcı ve samimi olmalı.</p>
+    <p><strong>Alt Kategoriler:</strong> Dil: Türkçe, Uzunluk: 600 kelime</p>
+    <p><strong>Eksik Olan Bölüm:</strong> Rol ve Amaç</p>
+    <textarea id="answer1" rows="4" placeholder="Buraya cevabını yaz..."></textarea><br>
+    <button onclick="checkAnswer(1)">Cevabı Gönder 📨</button>
+    <div id="feedback1"></div>
+    <div id="gif1" class="gif">
+      <img src="https://media1.tenor.com/m/w0gpxmD4-84AAAAd/dance-winnie-the-pooh.gif" width="300" style="border-radius:10px;">
+    </div>
+  </div>
+
+  <!-- Seviye 2 -->
+  <div class="level" id="level2">
+    <h2>Seviye 2: Talimatlar</h2>
+    <p><strong>Rol ve Amaç:</strong> Yeni başlayanlar için yazılım konularını anlatan bir yazarsın.</p>
+    <p><strong>Alt Kategoriler:</strong> Dil: Türkçe, Uzunluk: 800 kelime</p>
+    <p><strong>Eksik Olan Bölüm:</strong> Talimatlar</p>
+    <textarea id="answer2" rows="4" placeholder="Buraya cevabını yaz..."></textarea><br>
+    <button onclick="checkAnswer(2)">Cevabı Gönder 📨</button>
+    <div id="feedback2"></div>
+    <div id="gif2" class="gif">
+      <img src="https://media1.tenor.com/m/sJnOE_eYvFcAAAAC/pusheen.gif" width="300" style="border-radius:10px;">
+    </div>
+  </div>
+
+  <!-- Seviye 3 -->
+  <div class="level" id="level3">
+    <h2>Seviye 3: Çıktı Formatı</h2>
+    <p><strong>Rol ve Amaç:</strong> Akademik bir araştırmayı özetleyen bir yazarsın.</p>
+    <p><strong>Talimatlar:</strong> Yazı resmi, kaynak göstererek ve açık bir dille yazılmalı.</p>
+    <p><strong>Eksik Olan Bölüm:</strong> Çıktı Formatı</p>
+    <textarea id="answer3" rows="4" placeholder="Buraya cevabını yaz..."></textarea><br>
+    <button onclick="checkAnswer(3)">Cevabı Gönder 📨</button>
+    <div id="feedback3"></div>
+    <div id="gif3" class="gif">
+      <img src="https://media1.tenor.com/m/_L8Aapr1MiIAAAAC/hey-bear-sensory.gif" width="300" style="border-radius:10px;">
+    </div>
+  </div>
+
+  <!-- Oyun Bitti -->
+  <div class="level" id="finished">
+    <h2>🎉 Tebrikler!</h2>
+    <p>Tüm seviyeleri başarıyla tamamladın! 👏</p>
+    <img src="https://media1.tenor.com/m/UAH7Z676d84AAAAd/congratulations-congrats.gif"
+         style="width: 300px; margin-top: 20px; border-radius: 10px;">
+    <div id="answer-summary"></div>
+  </div>
+
+  <script>
+    const expectedAnswers = {
+      1: "a",
+      2: "b",
+      3: "c"
+    };
+
+    const responses = [];
+
+    function startGame() {
+      const name = document.getElementById("username").value.trim();
+      if (!name) {
+        alert("Lütfen ismini gir.");
+        return;
+      }
+      responses.push({ name: name });
+      document.getElementById("start").classList.remove("active");
+      document.getElementById("level1").classList.add("active");
+    }
+
+    function checkAnswer(level) {
+      const input = document.getElementById(`answer${level}`).value;
+      const feedback = document.getElementById(`feedback${level}`);
+      const gif = document.getElementById(`gif${level}`);
+
+      if (input.toLowerCase().includes(expectedAnswers[level])) {
+        feedback.innerHTML = "Tebrikler! Doğru cevap 😎";
+        gif.style.display = "block";
+
+        // Cevabı sakla
+        responses[0][`soru${level}`] = input;
+
+        setTimeout(() => {
+          document.getElementById(`level${level}`).classList.remove("active");
+          if (document.getElementById(`level${level + 1}`)) {
+            document.getElementById(`level${level + 1}`).classList.add("active");
+          } else {
+            document.getElementById("finished").classList.add("active");
+            showSummary();
+          }
+        }, 2500);
+      } else {
+        feedback.innerHTML = "❌ Henüz tam doğru olmadı. Cevabını gözden geçir.";
+        gif.style.display = "none";
+      }
+    }
+
+    function showSummary() {
+      const container = document.getElementById("answer-summary");
+      let allData = JSON.parse(localStorage.getItem("promptPuzzleLogs") || "[]");
+
+      allData.push(responses[0]);
+      localStorage.setItem("promptPuzzleLogs", JSON.stringify(allData));
+
+      let html = "<h3>Cevapların:</h3>";
+      allData.forEach((user, index) => {
+        html += `<p><strong>${index + 1}. Oyuncu:</strong> ${user.name}</p>`;
+        html += `<ul>
+          <li><strong>Soru 1:</strong> ${user.soru1 || "(boş)"}</li>
+          <li><strong>Soru 2:</strong> ${user.soru2 || "(boş)"}</li>
+          <li><strong>Soru 3:</strong> ${user.soru3 || "(boş)"}</li>
+        </ul><hr>`;
+      });
+
+      container.innerHTML = html;
+    }
+  </script>
+
+</body>
+</html>
