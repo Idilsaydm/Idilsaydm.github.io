@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Prompt Puzzle</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 30px;
+      background: #f4f4f4;
+    }
+
+    .level {
+      display: none;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
+    }
+
+    .level.active {
+      display: block;
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .gif {
+      display: none;
+      margin-top: 15px;
+    }
+
+    textarea {
+      width: 100%;
+    }
+
+    #answer-summary {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 20px;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Prompt Puzzle</h1>
+
+  <!-- Giriş ekranı -->
+  <div class="level active" id="start">
+    <h2>Oyuna Başla</h2>
+    <p>İsminizi giriniz:</p>
+    <input type="text" id="username" placeholder="İsminizi yazınız...">
+    <br><br>
+    <button onclick="startGame()">Başla🚀</button>
+  </div>
+
+ <!-- Seviye 1 -->
+<div class="level" id="level1">
+  <h2>Seviye 1: Rol ve Amaç</h2>
+
+  <p><strong>Talimatlar:</strong> Yazı sade, bilgilendirici ve motive edici bir dille yazılmalı.</p>
+
+  <p><strong>Alt Kategoriler:</strong> 
+    Hedef Kitle: 20–40 yaş arası sağlıklı yaşama ilgi duyan bireyler<br>
+    Ton: Bilgilendirici ama arkadaşça<br>
+    Uzunluk: 600–700 kelime
+  </p>
+
+  <p><strong>Ayrık Adımlar:</strong></p>
+  <ul>
+    <li>Sağlıklı beslenmenin temel ilkelerini açıkla</li>
+    <li>Yeni başlayanlar için öneriler ver</li>
+    <li>Örnek bir günlük menü ekle</li>
+  </ul>
+
+ <p><strong>Çıktı Formatı:</strong> 
+    Giriş, gelişme ve sonuç yapısında paragraflar<br>
+    Başlık ve alt başlıklar kullanılmalı
+  </p>
+
+  <p><strong>Bağlam:</strong> Bu yazı, kişisel gelişim ve yaşam tarzı konularını kapsayan bir blogda yayımlanacaktır.</p>
+
+  <p><strong>Eksik Olan Bölüm:</strong> Rol ve Amaç</p>
+  <textarea id="answer1" rows="4" placeholder="Yazıyı kimin yazdığını ve amacını belirt..."></textarea><br>
+  <button onclick="checkAnswer(1)">Cevabı Gönder📨</button>
+  <div id="feedback1"></div>
+  <div id="gif1" class="gif">
+    <img src="https://media1.tenor.com/m/MSlshZS6CVYAAAAC/satoru-gojo---correndo.gif" width="300" style="border-radius:10px;">
+  </div>
+</div>
+
+</div>
+
+<!-- Seviye 2 -->
+<div class="level" id="level2">
+  <h2>Seviye 2: Talimatlar</h2>
+
+  <p><strong>Rol ve Amaç:</strong> Bir YouTube içerik üreticisisin. Amacın, "Zaman Yönetimi Teknikleri" konulu bir eğitim videosu hazırlamak.</p>
+
+  <p><strong>Alt Kategoriler:</strong> 
+    Hedef Kitle: Üniversite öğrencileri ve genç profesyoneller<br>
+    Süre: 6–8 dakika<br>
+    Ton: Motive edici ve açıklayıcı
+  </p>
+
+  <p><strong>Ayrık Adımlar:</strong></p>
+  <ul>
+    <li>En popüler zaman yönetimi tekniklerini sırala</li>
+    <li>Her biri için kısa açıklama ver</li>
+    <li>Gerçek yaşam örnekleriyle destekle</li>
+  </ul>
+
+  <p><strong>Çıktı Formatı:</strong> 
+    Giriş, konu anlatımı ve kapanış şeklinde yapılandırılmış video senaryosu<br>
+    Her bölüm için önerilen süre aralığı verilmelidir
+  </p>
+
+  <p><strong>Bağlam:</strong> Bu video, kişisel gelişim temalı bir YouTube kanalında yayınlanacaktır.</p>
+
+  <p><strong>Eksik Olan Bölüm:</strong> Talimatlar</p>
+  <textarea id="answer2" rows="4" placeholder="Video hazırlama ile ilgili eksik talimatları yaz..."></textarea><br>
+  <button onclick="checkAnswer(2)">Cevabı Gönder📨</button>
+  <div id="feedback2"></div>
+  <div id="gif2" class="gif">
+    <img src="https://media1.tenor.com/m/fEthhnb02dIAAAAC/bucktooth-emoji-patrick-star.gif" width="300" style="border-radius:10px;">
+  </div>
+</div>
+
+  <!-- Oyun Bitti -->
+  <div class="level" id="finished">
+    <h2>🎉Tebrikler!🎉</h2>
+    <p>Tüm seviyeleri başarıyla tamamladın!👏</p>
+    <img src="https://media1.tenor.com/m/W3VbXS2cxGcAAAAC/excited-celebration.gif"
+         style="width: 300px; margin-top: 20px; border-radius: 10px;">
+    <div id="answer-summary"></div>
+  </div>
+
+<script>
+  const expectedAnswers = {
+    1: ["yazar", "amaç", "bilgilendirmek", "sağlık", "beslenme", "blog", "yaşam"],
+    2: ["senaryo", "video", "hazırlık", "planlama", "yapı", "bölüm", "süre", "kamera", "çekim"]
+  };
+
+  const responses = [];
+
+  function startGame() {
+    const name = document.getElementById("username").value.trim();
+    if (!name) {
+      alert("Lütfen ismini gir.");
+      return;
+    }
+    responses.push({ name: name });
+    document.getElementById("start").classList.remove("active");
+    document.getElementById("level1").classList.add("active");
+  }
+
+  function checkAnswer(level) {
+    const inputElement = document.getElementById(`answer${level}`);
+    const input = document.getElementById(`answer${level}`).value;
+    const feedback = document.getElementById(`feedback${level}`);
+    const gif = document.getElementById(`gif${level}`);
+    
+    const keywords = expectedAnswers[level];
+
+
+    const expected = expectedAnswers[level];
+    const inputLower = input.toLowerCase();
+    const matched = expected.some(word => inputLower.includes(word));
+
+    if (matched) {
+      feedback.innerHTML = "Tebrikler! Doğru cevap😎";
+      gif.style.display = "block";
+
+      // Cevabı sakla
+      responses[0][`soru${level}`] = input;
+
+      setTimeout(() => {
+        document.getElementById(`level${level}`).classList.remove("active");
+        if (document.getElementById(`level${level + 1}`)) {
+          document.getElementById(`level${level + 1}`).classList.add("active");
+        } else {
+          document.getElementById("finished").classList.add("active");
+          showSummary();
+        }
+      }, 3000);
+    } else {
+      feedback.innerHTML = "Cevabınız doğru değil. Tekrar deneyin.";
+      gif.style.display = "none";
+    }
+  }
+
+  function showSummary() {
+    const container = document.getElementById("answer-summary");
+    let allData = JSON.parse(localStorage.getItem("promptPuzzleLogs") || "[]");
+
+    allData.push(responses[0]);
+    localStorage.setItem("promptPuzzleLogs", JSON.stringify(allData));
+
+    let html = "<h3>Cevapların:</h3>";
+    allData.forEach((user, index) => {
+      html += `<p><strong>${index + 1}. Oyuncu:</strong> ${user.name}</p>`;
+      html += `<ul>
+        <li><strong>Soru 1:</strong> ${user.soru1 || "(boş)"}</li>
+        <li><strong>Soru 2:</strong> ${user.soru2 || "(boş)"}</li>
+      </ul><hr>`;
+    });
+
+    container.innerHTML = html;
+  }
+</script>
+
+
+</body>
+</html>
