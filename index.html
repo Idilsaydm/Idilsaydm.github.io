@@ -205,9 +205,13 @@
   }
 
   function checkAnswer(level) {
+    const inputElement = document.getElementById(`answer${level}`);
     const input = document.getElementById(`answer${level}`).value;
     const feedback = document.getElementById(`feedback${level}`);
     const gif = document.getElementById(`gif${level}`);
+    
+    const keywords = expectedAnswers[level];
+
 
     const expected = expectedAnswers[level];
     const inputLower = input.toLowerCase();
@@ -230,7 +234,7 @@
         }
       }, 2000);
     } else {
-      feedback.innerHTML = "Cevabınız doğru değil.";
+      feedback.innerHTML = "Cevabınız doğru değil. Tekrar deneyin.";
       gif.style.display = "none";
     }
   }
