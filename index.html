@@ -38,8 +38,8 @@
       margin-top: 15px;
     }
 
-    textarea {
-      width: 100%;
+    .radio-option {
+      margin-bottom: 10px;
     }
 
     #answer-summary {
@@ -47,10 +47,6 @@
       padding: 20px;
       border-radius: 10px;
       margin-top: 20px;
-    }
-
-    .hidden {
-      display: none;
     }
   </style>
 </head>
@@ -67,158 +63,83 @@
     <button onclick="startGame()">Başla🚀</button>
   </div>
 
-<div class="level" id="level1">
-  <h2>Seviye 1: Rol ve Amaç</h2>
+  <!-- Seviye 1 -->
+  <div class="level" id="level1">
+    <h2>Seviye 1: Rol ve Amaç</h2>
+    <p><strong>Talimatlar:</strong> Yazı sade, bilgilendirici ve motive edici bir dille yazılmalı.</p>
+    <p><strong>Alt Kategoriler:</strong> <br>
+      Hedef Kitle: 20–40 yaş arası sağlıklı yaşama ilgi duyan bireyler<br>
+      Ton: Bilgilendirici ama arkadaşça<br>
+      Uzunluk: 600–700 kelime</p>
+    <p><strong>Ayrık Adımlar:</strong></p>
+    <ul>
+      <li>Sağlıklı beslenmenin temel ilkelerini açıkla</li>
+      <li>Yeni başlayanlar için öneriler ver</li>
+      <li>Örnek bir günlük menü ekle</li>
+    </ul>
+    <p><strong>Çıktı Formatı:</strong> Giriş, gelişme ve sonuç yapısında paragraflar; başlık ve alt başlıklar kullanılmalı</p>
+    <p><strong>Bağlam:</strong> Bu yazı, kişisel gelişim ve yaşam tarzı konularını kapsayan bir blogda yayımlanacaktır.</p>
+      <p><strong>Eksik Olan Bölüm:</strong> Rol ve Amaç(Aşağıdaki şıklardan hangisi rol ve amaç eksikliğin doldurmak için en uygundur?)</p>
+ </p>
 
-  <p><strong>Talimatlar:</strong> Kodda birden fazla hata olabilir. Hepsini açıkla ve düzelt.</p>
-  <p><strong>Alt Kategoriler:</strong> Dil: Python 3<br>Odak: Dosya okuma ve veri işleme<br>Kütüphane: Pandas</p>
 
-  <p><strong>Ayrık Adımlar:</strong></p>
-  <ul>
-    <li>Kodun tamamını analiz et</li>
-    <li>Hataları ve nedenlerini belirt</li>
-    <li>Düzgün çalışan yeni versiyonu üret</li>
-    <li>Geliştirici notları ekle</li>
-  </ul>
+    <div class="radio-option"><input type="radio" name="q1" value="A"> Bir doktor tarafından yazılmıştır. Amaçı, bilimsel verilerle diyet kavramını sorgulamaktır.</div>
+    <div class="radio-option"><input type="radio" name="q1" value="B"> Bir yaşam koçu tarafından yazılmıştır. Amaç, sağlıklı yaşama ilgi duyanları motive etmek ve onlara temel bilgiler sunmaktır.</div>
+    <div class="radio-option"><input type="radio" name="q1" value="C"> Bir yemek blogger’ı tarafından yazılmıştır. Amaçı, lezzetli tarifleri paylaşmaktır.</div>
 
-  <p><strong>Çıktı Formatı:</strong></p>
-  <ul>
-    <li>Önce orijinal kodu blok olarak göster</li>
-    <li>Hataları numaralandırarak açıkla</li>
-    <li>Sonra düzeltilmiş kodu göster</li>
-    <li>En altta açıklayıcı notlar</li>
-  </ul>
-
-  <p><strong>Bağlam:</strong> Kod bir veri temizleme betiğidir. Günlük olarak otomatik çalışacaktır.</p>
-
-  <p><strong>Eksik Olan Bölüm:</strong> Rol ve Amaç</p>
-
-  <div class="radio-option"><input type="radio" name="q1" value="A"> Kodun nasıl çalıştığını anlamaya çalışan bir blog yazarıyım.</div>
-  <div class="radio-option"><input type="radio" name="q1" value="B"> Python geliştiricisiyim. Amacım, bu veri temizleme scriptindeki hataları analiz edip sağlam bir versiyon üretmektir.</div>
-  <div class="radio-option"><input type="radio" name="q1" value="C"> Veri analizi sürecine destek için yorum yapıyorum ama kodla ilgilenmiyorum.</div>
-
-  <button onclick="checkAnswer(1)">Cevabı Gönder📨</button>
-  <div id="feedback1"></div>
-  <div id="gif1" class="gif">
-    <img src="https://media1.tenor.com/m/w0gpxmD4-84AAAAd/dance-winnie-the-pooh.gif" width="300" style="border-radius:10px;">
+    <button onclick="checkAnswer(1)">Cevabı Gönder📨</button>
+    <div id="feedback1"></div>
+    <div id="gif1" class="gif">
+      <img src="https://media1.tenor.com/m/MSlshZS6CVYAAAAC/satoru-gojo---correndo.gif" width="300" style="border-radius:10px;">
+    </div>
   </div>
-</div>
 
+  <!-- Seviye 2 -->
+  <div class="level" id="level2">
+    <h2>Seviye 2: Talimatlar</h2>
+    <p><strong>Rol ve Amaç:</strong> Bir YouTube içerik üreticisisin. Amacın, "Zaman Yönetimi Teknikleri" konulu bir eğitim videosu hazırlamak.</p>
+    <p><strong>Alt Kategoriler:</strong> <br>
+      Hedef Kitle: Üniversite öğrencileri ve genç profesyoneller<br>
+      Süre: 6–8 dakika<br>
+      Ton: Motive edici ve açıklayıcı</p>
+    <p><strong>Ayrık Adımlar:</strong></p>
+    <ul>
+      <li>En popüler zaman yönetimi tekniklerini sırala</li>
+      <li>Her biri için kısa açıklama ver</li>
+      <li>Gerçek yaşam örnekleriyle destekle</li>
+    </ul>
+    <p><strong>Çıktı Formatı:</strong> Giriş, konu anlatımı ve kapanış şeklinde yapılandırılmış video senaryosu; her bölüm için süre aralığı verilmelidir</p>
+    <p><strong>Bağlam:</strong> Bu video, kişisel gelişim temalı bir YouTube kanalında yayınlanacaktır.</p>
+      <p><strong>Eksik Olan Bölüm:</strong> Talimatlar(Aşağıdaki şıklardan hangisi talimatlar eksikliğin doldurmak için en uygundur?)</p>
 
-<div class="level" id="level2">
-  <h2>Seviye 2: Talimatlar</h2>
+    <div class="radio-option"><input type="radio" name="q2" value="A"> Videoda her teknik sadece kelime olarak listelenmeli, görsellik ve örnek gerekmez.</div>
+    <div class="radio-option"><input type="radio" name="q2" value="B"> Videoda her zaman yönetimi tekniği açıklamalar ve gerçek yaşam örnekleriyle sunulmalı; her bölüm için süre verilmelidir.</div>
+    <div class="radio-option"><input type="radio" name="q2" value="C"> Video spontane gelişmelidir, senaryo gerekmez.</div>
 
-  <p><strong>Rol ve Amaç:</strong> Edebi eleştirmen olarak “Hayvan Çiftliği” kitabını özetleyip analiz edeceksin.</p>
-
-  <p><strong>Alt Kategoriler:</strong> 
-    Dil: Türkçe<br>
-    Uzunluk: 500–700 kelime<br>
-    Hedef Kitle: Lise ve üniversite öğrencileri<br>
-    Bakış Açısı: Toplumsal eleştiri üzerinden
-  </p>
-
-  <p><strong>Ayrık Adımlar:</strong></p>
-  <ul>
-    <li>Kitabın kısa bir özetini yaz</li>
-    <li>Ana karakterleri ve temsil ettikleri unsurları analiz et</li>
-    <li>Temel mesajları ve siyasi göndermeleri açıkla</li>
-  </ul>
-
-  <p><strong>Çıktı Formatı:</strong></p>
-  <ul>
-    <li>Paragraf yapısında yazı</li>
-    <li>Giriş, gelişme, sonuç yapısı</li>
-    <li>Alıntı varsa kaynak belirt</li>
-  </ul>
-
-  <p><strong>Bağlam:</strong> Bu metin, öğrencilere edebi analiz örneği olarak gösterilecektir.</p>
-
-  <p><strong>Eksik Olan Bölüm:</strong> Talimatlar</p>
-
-  <div class="radio-option">
-  <input type="radio" name="q2" value="A"> Kitabın olay örgüsü kısa şekilde özetlenmeli, analiz yapılmasına gerek yok. Biçimsel yapı önemli değildir.
-</div>
-<div class="radio-option">
-  <input type="radio" name="q2" value="B"> Yazı giriş, gelişme ve sonuç yapısında olmalı. Girişte özet, gelişmede karakter ve tema analizleri, sonuçta toplumsal mesajlar ele alınmalı.
-</div>
-<div class="radio-option">
-  <input type="radio" name="q2" value="C"> Okuyucuya sade bir dille ana karakterlerin isimleri verilmeli, yazı analitik değil bilgilendirici olmalıdır.
-</div>
-
-
-  <button onclick="checkAnswer(2)">Cevabı Gönder📨</button>
-  <div id="feedback2"></div>
-  <div id="gif2" class="gif">
-    <img src="https://media1.tenor.com/m/sJnOE_eYvFcAAAAC/pusheen.gif" width="300" style="border-radius:10px;">
+    <button onclick="checkAnswer(2)">Cevabı Gönder📨</button>
+    <div id="feedback2"></div>
+    <div id="gif2" class="gif">
+      <img src="https://media1.tenor.com/m/fEthhnb02dIAAAAC/bucktooth-emoji-patrick-star.gif" width="300" style="border-radius:10px;">
+    </div>
   </div>
-</div>
 
+<!-- Seviye 3 -->
 <div class="level" id="level3">
-  <h2>Seviye 3: Çıktı Formatı</h2>
+  <h2>Seviye 3: Yeni Bir Prompt Yaz</h2>
 
-  <p><strong>Rol ve Amaç:</strong> Dijital pazarlama stratejistisin. Amacın, yeni kurulmuş bir vegan cilt bakım markası için 3 aylık Instagram stratejisi oluşturmaktır.</p>
-
-  <p><strong>Talimatlar:</strong> Strateji hem etkileşimi hem de satışları artırmaya yönelik olmalıdır.</p>
-
-  <p><strong>Alt Kategoriler:</strong> 
-    Marka: VeganPure<br>
-    Ürün Türü: Hayvanlar üzerinde test edilmemiş vegan cilt bakım ürünleri<br>
-    Hedef Kitle: 18–35 yaş arası şehirli kadınlar<br>
-    Platform: Instagram<br>
-  </p>
-
-  <p><strong>Ayrık Adımlar:</strong></p>
-  <ul>
-    <li>Hedef kitle analizi yap</li>
-    <li>İçerik takvimi öner (haftalık)</li>
-    <li>Kampanya fikirleri geliştir</li>
-    <li>Influencer önerileri sun</li>
-  </ul>
-
-  <p><strong>Bağlam:</strong> Marka iki hafta önce kuruldu ve Instagram’da yalnızca 2.000 takipçisi var.</p>
-
-  <p><strong>Eksik Olan Bölüm:</strong> Çıktı Formatı</p>
-
-<div class="radio-option">
-  <input type="radio" name="q3" value="A">
-    Strateji haftalık tablo şeklinde planlanmalı, içerik başlıkları, kampanyalar ve önerilen influencer'lar ayrı başlıklarla görsel olarak sunulmalı.
-</div>
-
-<div class="radio-option">
-  <input type="radio" name="q3" value="B">
-    Strateji kısa açıklamalarla paragraflar halinde sunulmalı; zaman çizelgesi ya da görsel yapı zorunlu değildir.
-</div>
-
-<div class="radio-option">
-  <input type="radio" name="q3" value="C">
-  Yazı sadece kampanya fikirlerine odaklanmalı, hedef kitle ve içerik detaylarına girilmemelidir. Format ikinci plandadır.
-</div>
-  <button onclick="checkAnswer(3)">Cevabı Gönder📨</button>
-  <div id="feedback3"></div>
-  <div id="gif3" class="gif">
-    <img src="https://media1.tenor.com/m/_L8Aapr1MiIAAAAC/hey-bear-sensory.gif" width="300" style="border-radius:10px;">
-  </div>
-</div>
-
-<!-- Seviye 4 -->
-<div class="level" id="level4">
-  <h2>Seviye 4: Serbest Prompt Yazımı</h2>
-
-  <p><strong>Görev:</strong> Aşağıda verilen anahtar kelimeleri kullanarak kendi promptunu yaz. En az 1 kelime kullanmalısın. Aksi takdirde ilerleyemezsin.</p>
+  <p><strong>Görev:</strong> Aşağıdaki kelimelerden en az birini kullanarak yeni bir prompt yaz. Hayal gücünü kullan! Kutuyu boş bırakırsan devam edemezsin.</p>
 
   <p><strong>Anahtar Kelimeler:</strong></p>
   <ul>
-	<li>neden</li>
-	<li>fark</li>
-	<li>hikâye</li>
-	<li>ilginç</li>
-	<li>amaç</li>
+    <li>konu</li>
+    <li>örnek</li>
+    <li>soru</li>
+    <li>resim</li>
   </ul>
 
-  <textarea id="customPrompt" rows="5" placeholder="Kendi promptunu buraya yaz..."></textarea><br>
-  <button onclick="submitPrompt()">Promptu Gönder ✍️</button>
-  <div id="feedback4" style="margin-top: 10px; font-weight: bold;"></div>
-  
+<textarea id="customPrompt3" rows="5" placeholder="Yeni bir prompt yaz..."></textarea><br>
+<button onclick="submitPrompt3()">Promptu Gönder ✍️</button>
+<div id="feedback3" style="margin-top: 10px; font-weight: bold;"></div>
 </div>
 
 
@@ -226,18 +147,10 @@
   <div class="level" id="finished">
     <h2>🎉Tebrikler!🎉</h2>
     <p>Tüm seviyeleri başarıyla tamamladın!👏</p>
-    <img src="https://media1.tenor.com/m/UAH7Z676d84AAAAd/congratulations-congrats.gif"
-         style="width: 300px; margin-top: 20px; border-radius: 10px;">
+    <img src="https://media1.tenor.com/m/W3VbXS2cxGcAAAAC/excited-celebration.gif" style="width: 300px; margin-top: 20px; border-radius: 10px;">
     <div id="answer-summary"></div>
   </div>
-
 <script>
-  const correctAnswers = {
-    1: "B",
-    2: "B",
-    3: "A"
-  };
-
   const responses = [];
 
   function startGame() {
@@ -261,10 +174,11 @@
       return;
     }
 
+    const correctAnswers = { 1: "B", 2: "B" };
+
     if (selected.value === correctAnswers[level]) {
       feedback.innerHTML = "Tebrikler! Doğru cevap 😎";
       gif.style.display = "block";
-
       responses[0][`soru${level}`] = selected.value;
 
       setTimeout(() => {
@@ -277,10 +191,10 @@
     }
   }
 
-  function submitPrompt() {
-    const input = document.getElementById("customPrompt").value.trim();
-    const feedback = document.getElementById("feedback4");
-    const gif = document.getElementById("gif4");
+  function submitPrompt3() {
+    const input = document.getElementById("customPrompt3").value.trim();
+    const feedback = document.getElementById("feedback3");
+    const gif = document.getElementById("gif3");
 
     if (input.length < 3) {
       feedback.innerHTML = "Lütfen en az birkaç kelime yaz.";
@@ -288,11 +202,11 @@
       return;
     }
 
-    responses[0]["soru4"] = input;
+    responses[0]["soru3"] = input;
     feedback.innerHTML = "Cevabınız için teşekkürler👏";
 
     setTimeout(() => {
-      document.getElementById("level4").classList.remove("active");
+      document.getElementById("level3").classList.remove("active");
       document.getElementById("finished").classList.add("active");
       showSummary();
     }, 1500);
@@ -312,7 +226,6 @@
         <li><strong>Soru 1:</strong> ${user.soru1 || "(boş)"}</li>
         <li><strong>Soru 2:</strong> ${user.soru2 || "(boş)"}</li>
         <li><strong>Soru 3:</strong> ${user.soru3 || "(boş)"}</li>
-        <li><strong>Soru 4:</strong> ${user.soru4 || "(boş)"}</li>
       </ul><hr>`;
     });
 
