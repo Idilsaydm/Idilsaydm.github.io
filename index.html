@@ -67,7 +67,6 @@
     <button onclick="startGame()">Başla🚀</button>
   </div>
 
- <!-- Seviye 1 -->
 <div class="level" id="level1">
   <h2>Seviye 1: Rol ve Amaç</h2>
 
@@ -93,7 +92,11 @@
   <p><strong>Bağlam:</strong> Kod bir veri temizleme betiğidir. Günlük olarak otomatik çalışacaktır.</p>
 
   <p><strong>Eksik Olan Bölüm:</strong> Rol ve Amaç</p>
-  <textarea id="answer1" rows="4" placeholder="Buraya Rol ve Amaç yaz..."></textarea><br>
+
+  <div class="radio-option"><input type="radio" name="q1" value="A"> Kodun nasıl çalıştığını anlamaya çalışan bir blog yazarıyım.</div>
+  <div class="radio-option"><input type="radio" name="q1" value="B"> Python geliştiricisiyim. Amacım, bu veri temizleme scriptindeki hataları analiz edip sağlam bir versiyon üretmektir.</div>
+  <div class="radio-option"><input type="radio" name="q1" value="C"> Veri analizi sürecine destek için yorum yapıyorum ama kodla ilgilenmiyorum.</div>
+
   <button onclick="checkAnswer(1)">Cevabı Gönder📨</button>
   <div id="feedback1"></div>
   <div id="gif1" class="gif">
@@ -101,7 +104,7 @@
   </div>
 </div>
 
-<!-- Seviye 2 -->
+
 <div class="level" id="level2">
   <h2>Seviye 2: Talimatlar</h2>
 
@@ -131,7 +134,18 @@
   <p><strong>Bağlam:</strong> Bu metin, öğrencilere edebi analiz örneği olarak gösterilecektir.</p>
 
   <p><strong>Eksik Olan Bölüm:</strong> Talimatlar</p>
-  <textarea id="answer2" rows="4" placeholder="Buraya nasıl yazılması gerektiğine dair talimatları yaz..."></textarea><br>
+
+  <div class="radio-option">
+  <input type="radio" name="q2" value="A"> Kitabın olay örgüsü kısa şekilde özetlenmeli, analiz yapılmasına gerek yok. Biçimsel yapı önemli değildir.
+</div>
+<div class="radio-option">
+  <input type="radio" name="q2" value="B"> Yazı giriş, gelişme ve sonuç yapısında olmalı. Girişte özet, gelişmede karakter ve tema analizleri, sonuçta toplumsal mesajlar ele alınmalı.
+</div>
+<div class="radio-option">
+  <input type="radio" name="q2" value="C"> Okuyucuya sade bir dille ana karakterlerin isimleri verilmeli, yazı analitik değil bilgilendirici olmalıdır.
+</div>
+
+
   <button onclick="checkAnswer(2)">Cevabı Gönder📨</button>
   <div id="feedback2"></div>
   <div id="gif2" class="gif">
@@ -139,7 +153,6 @@
   </div>
 </div>
 
-<!-- Seviye 3 -->
 <div class="level" id="level3">
   <h2>Seviye 3: Çıktı Formatı</h2>
 
@@ -162,17 +175,52 @@
     <li>Influencer önerileri sun</li>
   </ul>
 
-
   <p><strong>Bağlam:</strong> Marka iki hafta önce kuruldu ve Instagram’da yalnızca 2.000 takipçisi var.</p>
 
   <p><strong>Eksik Olan Bölüm:</strong> Çıktı Formatı</p>
-  <textarea id="answer3" rows="4" placeholder="Stratejinin sunum yapısına uygun nasıl çıktılanması gerektiğini açıklayın..."></textarea><br>
+
+<div class="radio-option">
+  <input type="radio" name="q3" value="A">
+    Strateji haftalık tablo şeklinde planlanmalı, içerik başlıkları, kampanyalar ve önerilen influencer'lar ayrı başlıklarla görsel olarak sunulmalı.
+</div>
+
+<div class="radio-option">
+  <input type="radio" name="q3" value="B">
+    Strateji kısa açıklamalarla paragraflar halinde sunulmalı; zaman çizelgesi ya da görsel yapı zorunlu değildir.
+</div>
+
+<div class="radio-option">
+  <input type="radio" name="q3" value="C">
+  Yazı sadece kampanya fikirlerine odaklanmalı, hedef kitle ve içerik detaylarına girilmemelidir. Format ikinci plandadır.
+</div>
   <button onclick="checkAnswer(3)">Cevabı Gönder📨</button>
   <div id="feedback3"></div>
   <div id="gif3" class="gif">
     <img src="https://media1.tenor.com/m/_L8Aapr1MiIAAAAC/hey-bear-sensory.gif" width="300" style="border-radius:10px;">
   </div>
 </div>
+
+<!-- Seviye 4 -->
+<div class="level" id="level4">
+  <h2>Seviye 4: Serbest Prompt Yazımı</h2>
+
+  <p><strong>Görev:</strong> Aşağıda verilen anahtar kelimeleri kullanarak kendi promptunu yaz. En az 1 kelime kullanmalısın. Aksi takdirde ilerleyemezsin.</p>
+
+  <p><strong>Anahtar Kelimeler:</strong></p>
+  <ul>
+	<li>neden</li>
+	<li>fark</li>
+	<li>hikâye</li>
+	<li>ilginç</li>
+	<li>amaç</li>
+  </ul>
+
+  <textarea id="customPrompt" rows="5" placeholder="Kendi promptunu buraya yaz..."></textarea><br>
+  <button onclick="submitPrompt()">Promptu Gönder ✍️</button>
+  <div id="feedback4" style="margin-top: 10px; font-weight: bold;"></div>
+  
+</div>
+
 
   <!-- Oyun Bitti -->
   <div class="level" id="finished">
@@ -184,11 +232,10 @@
   </div>
 
 <script>
-  const expectedAnswers = {
-    1: ["geliştirici", "python", "hata", "düzelt", "amaç"],
-    2: ["özet", "analiz", "açıkla", "anlat", "paragraf", "giriş", "karakter", "tema"],
-    3: ["madde", "tablo", "pdf", "takvim", "kampanya", "içerik", "başlık",
-"influencer", "plan", "strateji", "haftalık", "sunum", "hedef", "öneri", "görsel", "analiz", "örnek", "format", "sunum", "detay", "liste", "özet", "katılım", "dönüşüm"]
+  const correctAnswers = {
+    1: "B",
+    2: "B",
+    3: "A"
   };
 
   const responses = [];
@@ -205,38 +252,50 @@
   }
 
   function checkAnswer(level) {
-    const inputElement = document.getElementById(`answer${level}`);
-    const input = document.getElementById(`answer${level}`).value;
+    const selected = document.querySelector(`input[name="q${level}"]:checked`);
     const feedback = document.getElementById(`feedback${level}`);
     const gif = document.getElementById(`gif${level}`);
-    
-    const keywords = expectedAnswers[level];
 
+    if (!selected) {
+      feedback.innerHTML = "Lütfen bir seçenek işaretleyin.";
+      return;
+    }
 
-    const expected = expectedAnswers[level];
-    const inputLower = input.toLowerCase();
-    const matched = expected.some(word => inputLower.includes(word));
-
-    if (matched) {
-      feedback.innerHTML = "Tebrikler! Doğru cevap😎";
+    if (selected.value === correctAnswers[level]) {
+      feedback.innerHTML = "Tebrikler! Doğru cevap 😎";
       gif.style.display = "block";
 
-      // Cevabı sakla
-      responses[0][`soru${level}`] = input;
+      responses[0][`soru${level}`] = selected.value;
 
       setTimeout(() => {
         document.getElementById(`level${level}`).classList.remove("active");
-        if (document.getElementById(`level${level + 1}`)) {
-          document.getElementById(`level${level + 1}`).classList.add("active");
-        } else {
-          document.getElementById("finished").classList.add("active");
-          showSummary();
-        }
-      }, 2000);
+        document.getElementById(`level${level + 1}`).classList.add("active");
+      }, 1500);
     } else {
       feedback.innerHTML = "Cevabınız doğru değil. Tekrar deneyin.";
       gif.style.display = "none";
     }
+  }
+
+  function submitPrompt() {
+    const input = document.getElementById("customPrompt").value.trim();
+    const feedback = document.getElementById("feedback4");
+    const gif = document.getElementById("gif4");
+
+    if (input.length < 3) {
+      feedback.innerHTML = "Lütfen en az birkaç kelime yaz.";
+      gif.style.display = "none";
+      return;
+    }
+
+    responses[0]["soru4"] = input;
+    feedback.innerHTML = "Cevabınız için teşekkürler👏";
+
+    setTimeout(() => {
+      document.getElementById("level4").classList.remove("active");
+      document.getElementById("finished").classList.add("active");
+      showSummary();
+    }, 1500);
   }
 
   function showSummary() {
@@ -253,13 +312,13 @@
         <li><strong>Soru 1:</strong> ${user.soru1 || "(boş)"}</li>
         <li><strong>Soru 2:</strong> ${user.soru2 || "(boş)"}</li>
         <li><strong>Soru 3:</strong> ${user.soru3 || "(boş)"}</li>
+        <li><strong>Soru 4:</strong> ${user.soru4 || "(boş)"}</li>
       </ul><hr>`;
     });
 
     container.innerHTML = html;
   }
 </script>
-
 
 </body>
 </html>
