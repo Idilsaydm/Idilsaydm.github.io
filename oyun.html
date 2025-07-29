@@ -204,32 +204,43 @@
 <div class="level" id="level4">
   <h2>Seviye 4: Serbest Prompt Yazımı</h2>
 
-  <p><strong>Görev:</strong> Aşağıda verilen anahtar kelimeleri kullanarak kendi promptunu yaz. En az 1 kelime kullanmalısın. Aksi takdirde ilerleyemezsin.</p>
+  <p><strong>Görev:</strong> Aşağıda verilen kelimelerden en az birini kullanarak yapay zekadan bir şey iste. Hayal gücünü kullan! Kutuyu boş bırakırsan devam edemezsin.</p>
 
   <p><strong>Anahtar Kelimeler:</strong></p>
   <ul>
-	<li>neden</li>
-	<li>fark</li>
-	<li>hikâye</li>
-	<li>ilginç</li>
-	<li>amaç</li>
+    <li>neden</li>
+    <li>fark</li>
+    <li>hikâye</li>
+    <li>ilginç</li>
+    <li>amaç</li>
   </ul>
 
-  <textarea id="customPrompt" rows="5" placeholder="Kendi promptunu buraya yaz..."></textarea><br>
-  <button onclick="submitPrompt()">Promptu Gönder ✍️</button>
+  <p><strong>Not:</strong> Basit ve anlaşılır bir prompt olabilir.<br>
+  </p>
+
+  <p><strong>Örnekler:</strong></p>
+  <ul style="margin-left: 20px;">
+    <li>"Bana sabah erken kalkmanın <strong>neden</strong> faydalı olduğunu açıkla."</li>
+    <li>"Zaman yönetimi ile dikkat dağınıklığı arasındaki <strong>fark</strong> nedir?"</li>
+    <li>"Bir <strong>hikâye</strong> yaz ama sonunda şaşırtıcı bir mesaj olsun."</li>
+    <li>"Yeni bir video fikri üret; <strong>ilginç</strong> ve özgün olsun."</li>
+    <li>"Bir eğitimin <strong>amaç</strong> kısmı nasıl yazılır?"</li>
+  </ul>
+
+  <textarea id="customPrompt4" rows="5" placeholder="Yapay zekaya ne sormak istersin? Buraya yaz..."></textarea><br>
+  <button onclick="submitPrompt4()">Promptu Gönder ✍️</button>
   <div id="feedback4" style="margin-top: 10px; font-weight: bold;"></div>
-  
 </div>
 
+<!-- Oyun Bitti -->
+<div class="level" id="finished">
+  <h2>🎉Tebrikler!🎉</h2>
+  <p>Tüm seviyeleri başarıyla tamamladın!👏</p>
+  <img src="https://media1.tenor.com/m/UAH7Z676d84AAAAd/congratulations-congrats.gif"
+       style="width: 300px; margin-top: 20px; border-radius: 10px;">
+  <div id="answer-summary"></div>
+</div>
 
-  <!-- Oyun Bitti -->
-  <div class="level" id="finished">
-    <h2>🎉Tebrikler!🎉</h2>
-    <p>Tüm seviyeleri başarıyla tamamladın!👏</p>
-    <img src="https://media1.tenor.com/m/UAH7Z676d84AAAAd/congratulations-congrats.gif"
-         style="width: 300px; margin-top: 20px; border-radius: 10px;">
-    <div id="answer-summary"></div>
-  </div>
 
 <script>
   const correctAnswers = {
@@ -277,26 +288,24 @@
     }
   }
 
-  function submitPrompt() {
-    const input = document.getElementById("customPrompt").value.trim();
-    const feedback = document.getElementById("feedback4");
-    const gif = document.getElementById("gif4");
+function submitPrompt4() {
+  const input = document.getElementById("customPrompt4").value.trim();
+  const feedback = document.getElementById("feedback4");
 
-    if (input.length < 3) {
-      feedback.innerHTML = "Lütfen en az birkaç kelime yaz.";
-      gif.style.display = "none";
-      return;
-    }
-
-    responses[0]["soru4"] = input;
-    feedback.innerHTML = "Cevabınız için teşekkürler👏";
-
-    setTimeout(() => {
-      document.getElementById("level4").classList.remove("active");
-      document.getElementById("finished").classList.add("active");
-      showSummary();
-    }, 1500);
+  if (input.length < 3) {
+    feedback.innerHTML = "Lütfen en az birkaç kelime yaz.";
+    return;
   }
+
+  responses[0]["soru4"] = input;
+  feedback.innerHTML = "Cevabınız için teşekkürler👏";
+
+  setTimeout(() => {
+    document.getElementById("level4").classList.remove("active");
+    document.getElementById("finished").classList.add("active");
+    showSummary();
+  }, 1500);
+}
 
   function showSummary() {
     const container = document.getElementById("answer-summary");
